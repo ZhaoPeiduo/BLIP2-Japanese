@@ -42,7 +42,7 @@ __all__ = [
     "BlipPretrain",
     "BlipRetrieval",
     "BlipVQA",
-    "Blip2Qformer",
+    "Blip2JapaenseQformer",
     "Blip2Base",
     "Blip2ITM",
     "CLIP",

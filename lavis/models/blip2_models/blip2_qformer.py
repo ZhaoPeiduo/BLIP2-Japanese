@@ -20,10 +20,12 @@ from lavis.models.blip2_models.blip2 import (
     disabled_train,
 )
 from lavis.models.blip_models.blip_outputs import BlipOutput, BlipOutputFeatures
+from lavis.common.config import node_to_dict
+from lavis.models.timesformer.vit import TimeSformer
 
 
-@registry.register_model("blip2")
-@registry.register_model("blip2_feature_extractor")
+@registry.register_model("blip_Japanese")
+@registry.register_model("blip2_Japanese_feature_extractor")
 class Blip2Qformer(Blip2Base):
     """
     BLIP2 first-stage model with Q-former and ViT.
@@ -89,9 +91,10 @@ class Blip2Qformer(Blip2Base):
         image = samples["image"]
         text = samples["text_input"]
 
-        image_embeds = self.ln_vision(self.visual_encoder(image))
+        image_embeds = self.visual_encoder.forward_features(video)
+        image_embeds = self.visual_encoder_proj(image_embeds)
         image_atts = torch.ones(image_embeds.size()[:-1], dtype=torch.long).to(
-            image.device
+            video.device
         )
 
         query_tokens = self.query_tokens.expand(image_embeds.shape[0], -1, -1)
@@ -281,7 +284,7 @@ class Blip2Qformer(Blip2Base):
             captions (list): A list of strings of length batch_size * num_captions.
         """
         image = samples["image"]
-        image_embeds = self.ln_vision(self.visual_encoder(image))
+        image_embeds = self.visual_encoder.forward_features(image)
 
         if not use_nucleus_sampling:
             image_embeds = image_embeds.repeat_interleave(num_beams, dim=0)
@@ -319,7 +322,7 @@ class Blip2Qformer(Blip2Base):
         return captions
 
     def forward_image(self, image):
-        image_embeds = self.ln_vision(self.visual_encoder(image))
+        image_embeds = self.visual_encoder.forward_features(image)
         image_atts = torch.ones(image_embeds.size()[:-1], dtype=torch.long).to(
             image.device
         )
@@ -402,7 +405,7 @@ class Blip2Qformer(Blip2Base):
             ), "Image is not provided for mode 'image' or 'multimodal'"
             # return query features
             with self.maybe_autocast():
-                image_embeds_frozen = self.ln_vision(self.visual_encoder(image))
+                image_embeds_frozen = self.visual_encoder.forward_features(image)
             image_embeds_frozen = image_embeds_frozen.float()
             image_atts = torch.ones(
                 image_embeds_frozen.size()[:-1], dtype=torch.long
@@ -442,7 +445,7 @@ class Blip2Qformer(Blip2Base):
         elif mode == "multimodal":
             # return multimodel query features
             with self.maybe_autocast():
-                image_embeds_frozen = self.ln_vision(self.visual_encoder(image))
+                image_embeds_frozen = self.visual_encoder.forward_features(image)
             image_embeds_frozen = image_embeds_frozen.float()
             image_atts = torch.ones(
                 image_embeds_frozen.size()[:-1], dtype=torch.long
@@ -480,24 +483,17 @@ class Blip2Qformer(Blip2Base):
 
     @classmethod
     def from_config(cls, cfg):
-        vit_model = cfg.get("vit_model", "eva_clip_g")
-        img_size = cfg.get("image_size")
+        visual_encoder_config = node_to_dict(cfg.timesformer)
+        visual_encoder = TimeSformer(**visual_encoder_config)
         num_query_token = cfg.get("num_query_token")
         cross_attention_freq = cfg.get("cross_attention_freq", 2)
 
-        drop_path_rate = cfg.get("drop_path_rate", 0)
-        use_grad_checkpoint = cfg.get("use_grad_checkpoint", False)
-        vit_precision = cfg.get("vit_precision", "fp16")
         freeze_vit = cfg.get("freeze_vit", True)
 
         max_txt_len = cfg.get("max_txt_len", 32)
 
         model = cls(
-            vit_model=vit_model,
-            img_size=img_size,
-            drop_path_rate=drop_path_rate,
-            use_grad_checkpoint=use_grad_checkpoint,
-            vit_precision=vit_precision,
+            visual_encoder=visual_encoder,
             freeze_vit=freeze_vit,
             num_query_token=num_query_token,
             cross_attention_freq=cross_attention_freq,
