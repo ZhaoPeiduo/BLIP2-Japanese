@@ -44,11 +44,7 @@ class Blip2Qformer(Blip2Base):
 
     def __init__(
         self,
-        vit_model="eva_clip_g",
-        img_size=224,
-        drop_path_rate=0,
-        use_grad_checkpoint=False,
-        vit_precision="fp16",
+        visual_encoder,
         freeze_vit=True,
         num_query_token=32,
         cross_attention_freq=2,
@@ -58,10 +54,12 @@ class Blip2Qformer(Blip2Base):
         super().__init__()
 
         self.tokenizer = self.init_tokenizer()
-
-        self.visual_encoder, self.ln_vision = self.init_vision_encoder(
-            vit_model, img_size, drop_path_rate, use_grad_checkpoint, vit_precision
-        )
+        self.num_features = 1408
+        timesformer_output_feature_dim = 768
+        qformer_bert_input_dim = 1408  # following eva
+        self.visual_encoder_proj = nn.Linear(timesformer_output_feature_dim, qformer_bert_input_dim)
+        self.visual_encoder = visual_encoder
+        
         if freeze_vit:
             for name, param in self.visual_encoder.named_parameters():
                 param.requires_grad = False

@@ -32,7 +32,7 @@ from transformers.utils import (
     is_torch_fx_proxy,
     logging,
 )
-from transformers.models.gptsan_japanese.configuration_gptsan_japanese import GPTSanJapaneseConfig
+from transformers.models.gptsan_japanese import GPTSanJapaneseConfig
 
 
 logger = logging.get_logger(__name__)
