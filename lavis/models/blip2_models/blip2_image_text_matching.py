@@ -8,11 +8,11 @@
 import torch
 import torch.nn.functional as F
 from lavis.common.registry import registry
-from lavis.models.blip2_models.blip2_qformer import Blip2Qformer
+from lavis.models.blip2_models.blip2_qformer import Blip2JapaneseQformer
 
 
 @registry.register_model("blip2_image_text_matching")
-class Blip2ITM(Blip2Qformer):
+class Blip2ITM(Blip2JapaneseQformer):
     """
     BLIP Image-Text Matching (ITM) model.
     Supported model types:

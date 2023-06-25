@@ -25,7 +25,7 @@ from lavis.models.blip_models.blip_retrieval import BlipRetrieval
 from lavis.models.blip_models.blip_vqa import BlipVQA
 
 from lavis.models.blip2_models.blip2 import Blip2Base
-from lavis.models.blip2_models.blip2_qformer import Blip2Qformer
+from lavis.models.blip2_models.blip2_qformer import Blip2JapaneseQformer
 from lavis.models.blip2_models.blip2_image_text_matching import Blip2ITM
 
 from lavis.models.clip_models.model import CLIP
@@ -42,7 +42,7 @@ __all__ = [
     "BlipPretrain",
     "BlipRetrieval",
     "BlipVQA",
-    "Blip2JapaenseQformer",
+    "Blip2JapaneseQformer",
     "Blip2Base",
     "Blip2ITM",
     "CLIP",
