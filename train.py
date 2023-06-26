@@ -12,6 +12,7 @@ import random
 import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
+import torch.distributed as dist
 
 import lavis.tasks as tasks
 from lavis.common.config import Config
@@ -74,6 +75,13 @@ def get_runner_class(cfg):
 def main():
     # allow auto-dl completes on main process without timeout when using NCCL backend.
     # os.environ["NCCL_BLOCKING_WAIT"] = "1"
+
+    os.environ['MASTER_ADDR'] = "localhost"
+    os.environ['MASTER_PORT'] = "8888"
+    os.environ['LOCAL_RANK'] = '0'
+    os.environ['WORLD_SIZE'] = '1'
+    # initialize the process group
+    dist.init_process_group("gloo", rank=0, world_size=1)
 
     # set before init_distributed_mode() to ensure the same job_id shared across all ranks.
     job_id = now()

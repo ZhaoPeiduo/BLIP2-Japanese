@@ -28,7 +28,6 @@ class BaseDataset(Dataset):
 
         self.vis_processor = vis_processor
         self.text_processor = text_processor
-
         self._add_instance_ids()
 
     def __len__(self):
