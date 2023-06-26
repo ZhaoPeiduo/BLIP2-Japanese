@@ -23,13 +23,13 @@ from lavis.models.base_model import BaseModel
 from lavis.models.blip2_models.Qformer import BertConfig, BertLMHeadModel
 from lavis.models.eva_vit import create_eva_vit_g
 from lavis.models.clip_vit import create_clip_vit_L
-from transformers import BertJapaneseTokenizer
+from lavis.models.bert_japanese import BertJapaneseTokenizer
 
 
 class Blip2Base(BaseModel):
     @classmethod
     def init_tokenizer(cls, truncation_side="right"):
-        tokenizer = BertJapaneseTokenizer.from_pretrained('bert-base-japanese-whole-word-masking')
+        tokenizer = BertJapaneseTokenizer.from_pretrained("./lavis/pretrained_weights/bert-base-japanese-whole-word-masking", local_files_only=True)
         tokenizer.add_special_tokens({"bos_token": "[DEC]"})
         return tokenizer
 
@@ -45,20 +45,42 @@ class Blip2Base(BaseModel):
 
     @classmethod
     def init_Qformer(cls, num_query_token, vision_width, cross_attention_freq=2):
-        encoder_config = BertConfig.from_pretrained("bert-base-Japanese")
+        encoder_config = BertConfig.from_pretrained("./lavis/pretrained_weights/bert-base-japanese-whole-word-masking")
         encoder_config.encoder_width = vision_width
         # insert cross-attention layer every other block
         encoder_config.add_cross_attention = True
         encoder_config.cross_attention_freq = cross_attention_freq
         encoder_config.query_length = num_query_token
         Qformer = BertLMHeadModel.from_pretrained(
-            "bert-base-Japanese", config=encoder_config
+           "./lavis/pretrained_weights/bert-base-japanese-whole-word-masking", config=encoder_config
         )
         query_tokens = nn.Parameter(
             torch.zeros(1, num_query_token, encoder_config.hidden_size)
         )
         query_tokens.data.normal_(mean=0.0, std=encoder_config.initializer_range)
         return Qformer, query_tokens
+
+    def init_vision_encoder(
+            self, model_name, img_size, drop_path_rate, use_grad_checkpoint, precision
+        ):
+            assert model_name in [
+                "eva_clip_g",
+                "eva2_clip_L",
+                "clip_L",
+            ], "vit model must be eva_clip_g, eva2_clip_L or clip_L"
+            if model_name == "eva_clip_g":
+                visual_encoder = create_eva_vit_g(
+                    img_size, drop_path_rate, use_grad_checkpoint, precision
+                )
+    #         elif model_name == "eva2_clip_L":
+    #             visual_encoder = create_eva2_vit_L(
+    #                 img_size, drop_path_rate, use_grad_checkpoint, precision
+    #             )
+            elif model_name == "clip_L":
+                visual_encoder = create_clip_vit_L(img_size, use_grad_checkpoint, precision)
+            ln_vision = LayerNorm(visual_encoder.num_features)
+            self.vit_name = model_name
+            return visual_encoder, ln_vision
 
     def load_from_pretrained(self, url_or_filename):
         if is_url(url_or_filename):

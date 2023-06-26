@@ -4,7 +4,7 @@
  # For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
 
 model:
-  arch: blip2
+  arch: blip2_Japanese
   model_type: pretrain
   load_pretrained: False #pretrain from scratch
   freeze_vit: True

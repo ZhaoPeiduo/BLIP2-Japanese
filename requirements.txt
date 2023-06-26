@@ -2,9 +2,11 @@ contexttimer
 decord
 einops>=0.4.1
 fairscale==0.4.4
+fugashi
 ftfy
 iopath
 ipython
+ipadic
 omegaconf
 opencv-python-headless==4.5.5.64
 opendatasets
