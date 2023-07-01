@@ -286,7 +286,7 @@ class Blip2JapaneseQformer(Blip2Base):
         image_embeds = self.ln_vision(self.visual_encoder(image))
 
         if not use_nucleus_sampling:
-            image_embeds = image_embeds.repeat_interleave(num_beams, dim=0)
+            image_embeds = image_embeds.repeat_interleave(num_beams, dim=1)
         else:
             num_beams = 1
         image_atts = torch.ones(image_embeds.size()[:-1], dtype=torch.long).to(
