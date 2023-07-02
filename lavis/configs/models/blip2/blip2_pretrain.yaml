@@ -7,8 +7,8 @@ model:
   arch: pretrain
   load_finetuned: False
 
-  pretrained: "./lavis/pretrained_stage1/blip2_pretrained.pth"
-  finetuned: ""
+  pretrained: "./lavis/pretrained/blip2_pretrained_stage1.pth"
+  finetuned: "./lavis/pretrained/blip2_pretrained_stage2.pth"
 
   # vit encoder
   image_size: 224

@@ -8,7 +8,7 @@ model:
   model_type: pretrain
   load_pretrained: True
   # intialize stage 2 pretraining from stage 1 pretrained model
-  pretrained: "./lavis/pretrained_stage1/blip2_pretrained.pth"
+  pretrained: "./lavis/pretrained/blip2_pretrained_stage1.pth"
   freeze_vit: True
 
 
@@ -59,7 +59,7 @@ run:
 
   evaluate: False
   train_splits: ["train"]
-  
+
   device: "cuda"
   world_size: 1
   dist_url: "env://"
