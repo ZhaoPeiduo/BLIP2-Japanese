@@ -37,9 +37,7 @@ class Blip2JapaneseQformer(Blip2Base):
     """
 
     PRETRAINED_MODEL_CONFIG_DICT = {
-        "pretrain": "configs/models/blip2/blip2_pretrain.yaml",
-        "pretrain_vitL": "configs/models/blip2/blip2_pretrain_vitL.yaml",
-        "coco": "configs/models/blip2/blip2_coco.yaml",
+        "pretrain": "configs/models/blip2/blip2_pretrain.yaml"
     }
 
     def __init__(

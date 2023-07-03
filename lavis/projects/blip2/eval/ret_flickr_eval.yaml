@@ -4,8 +4,8 @@
  # For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
 
 model:
-  arch: blip2
-  model_type: coco
+  arch: blip2_Japanese
+  model_type: pretrain
   use_grad_checkpoint: False
 
 datasets:
@@ -13,7 +13,7 @@ datasets:
     vis_processor:
         eval:
           name: "blip_image_eval"
-          image_size: 364
+          image_size: 224
     text_processor:
         eval:
           name: "blip_caption"
