@@ -12,7 +12,7 @@ The weights of Blip2_Japanese_qformer trained on STAIR can be obtained from [thi
 
 Copy the whole folder under lavis directory to run the example jupyter notebook.
 
-Captions generated for [flickr30k dataset](https://www.kaggle.com/datasets/adityajn105/flickr30k?select=Images) can be found in flicker30k_caption.json.
+Captions generated for [flickr30k dataset](https://www.kaggle.com/datasets/adityajn105/flickr30k?select=Images) can be found in flickr30k_caption.json.
 
 These captions are generated using top-k sampling instead of nucleus, and may contain wrong details as shown in the examples below:
 
@@ -23,5 +23,9 @@ These captions are generated using top-k sampling instead of nucleus, and may co
  ![1001573224](https://github.com/ZhaoPeiduo/BLIP2-Japanese/assets/77187494/9a563146-e815-49e7-96d4-55a69a3d0123)
  
 {'image': '1001573224.jpg', 'caption': ['6 人 の 女性 が 屋内 で 飛び跳ね て いる']} # Wrong head count
+
+## Use Case: Image Retrieval
+
+coming soon
 
 This model is still experimental and might be further trained on other captioning datasets with Japanese captions.
