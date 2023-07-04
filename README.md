@@ -12,7 +12,7 @@ The weights of Blip2_Japanese_qformer trained on STAIR can be obtained from [thi
 
 Copy the whole folder under lavis directory to run the example jupyter notebook.
 
-Captions generated for [flickr30k dataset](https://www.kaggle.com/datasets/adityajn105/flickr30k?select=Images) can be found in flickr30k_caption.json.
+Captions generated for [flickr30k dataset](https://www.kaggle.com/datasets/adityajn105/flickr30k?select=Images) can be found in flickr30k_caption.json. Script in flickr30k_caption_generate.ipynb. 
 
 These captions are generated using top-k sampling instead of nucleus, and may contain wrong details as shown in the examples below:
 
@@ -26,6 +26,6 @@ These captions are generated using top-k sampling instead of nucleus, and may co
 
 ## Use Case: Image Retrieval
 
-coming soon
+Refer to the example.ipynb notebooks for more details. The idea is to get the average cosine similarity of query tokens between the image embeddings and the multimodal embeddings.
 
 This model is still experimental and might be further trained on other captioning datasets with Japanese captions.
