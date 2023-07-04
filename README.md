@@ -1,6 +1,6 @@
 # BLIP2-Japanese
 
-This project builds upon the [LAVIS](https://github.com/salesforce/LAVIS) library's BLIP2.
+This project builds upon [LAVIS](https://github.com/salesforce/LAVIS) library's BLIP2 mdoel.
 
 The main idea is to replace the tokenizer and the underlying BERT model in Blip2's Qformer with the one trained on Japanese datasets and retrain the upated model on Japanese captioning datasets.
 
