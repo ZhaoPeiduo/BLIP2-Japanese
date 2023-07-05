@@ -4,7 +4,7 @@ This project builds upon [LAVIS](https://github.com/salesforce/LAVIS) library's 
 
 The main idea is to replace the tokenizer and the underlying BERT model in Blip2's Qformer with the one trained on Japanese datasets and retrain the upated model on Japanese captioning datasets.
 
-The model has been trained for stage1 using COCO dataset with [STAIR captions](http://captions.stair.center/#:~:text=STAIR%20Captions%20is%20a%20large,multimodal%20retrieval%2C%20and%20image%20generation.).
+The model has been trained using COCO dataset with [STAIR captions](http://captions.stair.center/#:~:text=STAIR%20Captions%20is%20a%20large,multimodal%20retrieval%2C%20and%20image%20generation.).
 
 ## Use Case: Generate Japanese Captions for Captioning Datasets
 
