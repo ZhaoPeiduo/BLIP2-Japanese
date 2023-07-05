@@ -6,11 +6,19 @@ The main idea is to replace the tokenizer and the underlying BERT model in Blip2
 
 The model has been trained using COCO dataset with [STAIR captions](http://captions.stair.center/#:~:text=STAIR%20Captions%20is%20a%20large,multimodal%20retrieval%2C%20and%20image%20generation.).
 
-## Use Case: Generate Japanese Captions for Captioning Datasets
+## Quick Start
 
 The weights of Blip2_Japanese_qformer trained on STAIR can be obtained from [this link](https://drive.google.com/drive/folders/11YRyQb-_Pn8g3Wlnv2aBwNnvZ0Oo4LRM?usp=drive_link).
 
-Copy the whole folder under lavis directory to run the example jupyter notebook.
+Copy the whole folder under lavis directory, make sure the directory is called pretrained.
+
+Morover, download bert-base-japanese-whole-word-masking weights and config from [the hugging face link](https://huggingface.co/cl-tohoku/bert-base-japanese-whole-word-masking/tree/main)
+
+You should now be able to run the example.ipynb notebook. 
+
+For directory naming conventions, you can also refer to the .gitignore file. 
+
+## Use Case: Generate Japanese Captions for Captioning Datasets
 
 Captions generated for [flickr30k dataset](https://www.kaggle.com/datasets/adityajn105/flickr30k?select=Images) can be found in flickr30k_caption.json. Script in flickr30k_caption_generate.ipynb. 
 
@@ -37,6 +45,5 @@ In blip2_pretrain.yaml: vit_precision = 'fp16'
 In pretrain_stage1.yaml: batch_size = 25
 
 During evaluation you have to change vit_precision back to fp32. 
-
 
 **This model is still experimental and might be further trained on other captioning datasets with Japanese captions.**
