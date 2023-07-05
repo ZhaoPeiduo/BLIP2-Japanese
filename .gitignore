@@ -154,3 +154,12 @@ debug*/
 *.gz
 
 cache/
+lavis/bert-base-japanese-whole-word-masking/config.json
+lavis/bert-base-japanese-whole-word-masking/flax_model.msgpack
+lavis/bert-base-japanese-whole-word-masking/pytorch_model.bin
+lavis/bert-base-japanese-whole-word-masking/README.md
+lavis/bert-base-japanese-whole-word-masking/tf_model.h5
+lavis/bert-base-japanese-whole-word-masking/tokenizer_config.json
+lavis/bert-base-japanese-whole-word-masking/vocab.txt
+lavis/pretrained/blip2_pretrained_stage1.pth
+lavis/pretrained/blip2_pretrained_stage2.pth
