@@ -28,4 +28,15 @@ These captions are generated using top-k sampling instead of nucleus, and may co
 
 Refer to the example.ipynb notebooks for more details. The idea is to get the average cosine similarity of query tokens between the image embeddings and the multimodal embeddings.
 
-This model is still experimental and might be further trained on other captioning datasets with Japanese captions.
+## Model training
+
+The model was trained on a single GTX4080 GPU(laptop). Hence the config during training is modified as follows:
+
+In blip2_pretrain.yaml: vit_precision = 'fp16'
+
+In pretrain_stage1.yaml: batch_size = 25
+
+During evaluation you have to change vit_precision back to fp32. 
+
+
+**This model is still experimental and might be further trained on other captioning datasets with Japanese captions.**
