@@ -29,7 +29,7 @@ from lavis.models.bert_japanese import BertJapaneseTokenizer
 class Blip2Base(BaseModel):
     @classmethod
     def init_tokenizer(cls, truncation_side="right"):
-        tokenizer = BertJapaneseTokenizer.from_pretrained("./lavis/pretrained_weights/bert-base-japanese-whole-word-masking", local_files_only=True)
+        tokenizer = BertJapaneseTokenizer.from_pretrained("./lavis/bert-base-japanese-whole-word-masking", local_files_only=True)
         tokenizer.add_special_tokens({"bos_token": "[DEC]"})
         return tokenizer
 
@@ -45,14 +45,14 @@ class Blip2Base(BaseModel):
 
     @classmethod
     def init_Qformer(cls, num_query_token, vision_width, cross_attention_freq=2):
-        encoder_config = BertConfig.from_pretrained("./lavis/pretrained_weights/bert-base-japanese-whole-word-masking")
+        encoder_config = BertConfig.from_pretrained("./lavis/bert-base-japanese-whole-word-masking")
         encoder_config.encoder_width = vision_width
         # insert cross-attention layer every other block
         encoder_config.add_cross_attention = True
         encoder_config.cross_attention_freq = cross_attention_freq
         encoder_config.query_length = num_query_token
         Qformer = BertLMHeadModel.from_pretrained(
-           "./lavis/pretrained_weights/bert-base-japanese-whole-word-masking", config=encoder_config
+           "./lavis/bert-base-japanese-whole-word-masking", config=encoder_config
         )
         query_tokens = nn.Parameter(
             torch.zeros(1, num_query_token, encoder_config.hidden_size)
