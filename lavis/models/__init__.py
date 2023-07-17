@@ -13,13 +13,10 @@ from lavis.common.registry import registry
 from lavis.models.base_model import BaseModel
 
 from lavis.models.blip_models.blip import BlipBase
-from lavis.models.blip_models.blip_feature_extractor import BlipFeatureExtractor
 from lavis.models.blip_models.blip_pretrain import BlipPretrain
-from lavis.models.blip_models.blip_retrieval import BlipRetrieval
 
 from lavis.models.blip2_models.blip2 import Blip2Base
 from lavis.models.blip2_models.blip2_qformer import Blip2JapaneseQformer
-from lavis.models.blip2_models.blip2_image_text_matching import Blip2ITM
 
 from lavis.processors.base_processor import BaseProcessor
 
@@ -28,12 +25,9 @@ __all__ = [
     "load_model",
     "BaseModel",
     "BlipBase",
-    "BlipFeatureExtractor",
     "BlipPretrain",
-    "BlipRetrieval",
     "Blip2JapaneseQformer",
     "Blip2Base",
-    "Blip2ITM",
 ]
 
 
