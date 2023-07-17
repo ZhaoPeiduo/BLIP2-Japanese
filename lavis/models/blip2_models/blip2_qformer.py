@@ -26,18 +26,18 @@ from lavis.models.blip_models.blip_outputs import BlipOutput, BlipOutputFeatures
 @registry.register_model("blip2_Japanese_feature_extractor")
 class Blip2JapaneseQformer(Blip2Base):
     """
-    BLIP2 first-stage model with Q-former and ViT.
+    BLIP2 model with Q-former and ViT.
     Supported model types:
-        - pretrained: pretrained model with vit-g
-        - pretrain_vitL: pretrained model with vit-large
-        - coco: fintuned model on coco
+        - pretrained: pretrained model with eva_clip_g
+        - finetuned: finetuned model with eva_clip_g
     Usage:
         >>> from lavis.models import load_model
-        >>> model = load_model("blip2", "pretrain")
+        >>> model = load_model("blip2_Japanese", "pretrain")
     """
 
     PRETRAINED_MODEL_CONFIG_DICT = {
-        "pretrain": "configs/models/blip2/blip2_pretrain.yaml"
+        "pretrain": "configs/models/blip2/blip2_pretrain.yaml",
+        "finetune": "configs/models/blip2/blip2_finetune.yaml"
     }
 
     def __init__(

@@ -8,13 +8,13 @@ model:
   load_finetuned: False
 
   pretrained: "./lavis/pretrained/blip2_pretrained_stage1.pth"
-  finetuned: "./lavis/pretrained/blip2_pretrained_stage2.pth"
+  # finetuned: "./lavis/pretrained/blip2_pretrained_stage2.pth"
 
   # vit encoder
   image_size: 224
   drop_path_rate: 0
   use_grad_checkpoint: False
-  vit_precision: "fp32"
+  vit_precision: "fp16"
   freeze_vit: True
 
   # Q-Former
