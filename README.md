@@ -55,3 +55,12 @@ In pretrain_stage1.yaml: batch_size = 25
 During evaluation you have to change vit_precision back to fp32. 
 
 **The pretrained and finetuned weights may be updated without prior notice. So if you cannot reproduce the results in the exmaple notebook, please re-download the weights and try again.**
+
+## User Interface for Japanese Caption Generator
+
+A simple interface for demo purpose can be found in generator-ui.py. To run the UI:
+```
+   python generator-ui.py
+```
+![image](https://github.com/ZhaoPeiduo/BLIP2-Japanese/assets/77187494/45d9c20d-2f47-4c54-8534-834487194c6a)
+
