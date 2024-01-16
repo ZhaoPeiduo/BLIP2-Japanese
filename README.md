@@ -12,7 +12,7 @@ The weights of Blip2_Japanese_qformer trained on STAIR can be obtained from [thi
 
 Copy the whole folder under lavis directory, make sure the directory is called pretrained.
 
-Morover, download bert-base-japanese-whole-word-masking weights and config from [the hugging face link](https://huggingface.co/cl-tohoku/bert-base-japanese-whole-word-masking/tree/main)
+Moreover, download bert-base-japanese-whole-word-masking weights and config from [the hugging face link](https://huggingface.co/cl-tohoku/bert-base-japanese-whole-word-masking/tree/main)
 
 You should now be able to run the example.ipynb notebook. 
 
