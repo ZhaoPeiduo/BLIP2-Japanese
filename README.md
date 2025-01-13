@@ -8,7 +8,7 @@ The model has been trained using COCO dataset with [STAIR captions](http://capti
 
 ## Quick Start
 
-The weights of Blip2_Japanese_qformer trained on STAIR can be obtained from [this link](https://drive.google.com/drive/folders/11YRyQb-_Pn8g3Wlnv2aBwNnvZ0Oo4LRM?usp=drive_link).
+The weights of Blip2_Japanese_qformer trained on STAIR can be obtained from [hugging face](https://huggingface.co/zpdandrew/Blip2-Japanese/tree/main).
 
 Copy the whole folder under lavis directory, make sure the directory is called pretrained.
 
