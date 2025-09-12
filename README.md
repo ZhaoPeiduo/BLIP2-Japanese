@@ -64,3 +64,22 @@ A simple interface for demo purpose can be found in generator-ui.py. To run the 
 ```
 ![image](https://github.com/ZhaoPeiduo/BLIP2-Japanese/assets/77187494/45d9c20d-2f47-4c54-8534-834487194c6a)
 
+## Web UI (React)
+
+A lightweight React web frontend is available under `web/` with a minimal Python server that exposes an `/api/caption` endpoint and serves static assets. No Node.js install is required.
+
+Run the server:
+```
+python web/server.py
+```
+
+Then open your browser at:
+```
+http://127.0.0.1:7860
+```
+
+Usage:
+- Click the file input to select an image.
+- Press "Generate Caption" to run the model and display the Japanese caption.
+- All processing runs locally; no uploads leave your machine.
+
